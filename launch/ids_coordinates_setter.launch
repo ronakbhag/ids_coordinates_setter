@@ -1,0 +1,40 @@
+<launch>
+  <param name="startupTopic" value="/mavros/rc/in" />
+  <param name="trigger_channel_max_val" value="1600" />
+  <param name="trigger_channel_min_val" value="1500" />
+
+
+  <node pkg="ids_coordinates_setter" name="ids_coordinates_setter" type="setter.py" output="screen">
+   
+      
+    <!-- images path -->
+<!--  
+  <param name="image_root_path" value="/home/ricardo/Pictures"/>
+    <param name="camera_script_root_path" value="/home/ricardo/testes/gerador.sh"/>
+-->
+    <!-- drone environment imgs path-->
+    
+    <param name="image_root_path" value="/media/mynewdrive/test"/>
+    <param name="camera_script_root_path" value="/media/mynewdrive/test/capture1"/>
+    
+
+  </node>
+
+    <node pkg="ids_coordinates_setter" name="image_gps_editor_action_server" type="action_server.py" output="screen">
+
+      <!-- set reference point -->
+      <!-- latitude -->
+      <param name="latitude" value="38.614993" />
+      <!-- longitude -->
+      <param name="longitude" value="-8.912917" />
+      <!-- earthRadius -->
+      <param name="earthRadius" value="6378137" />
+
+     <param name="odometry_topic" value="/camera/odom/sample" />
+     <param name="altitude_topic" value="/mavros/vision_pose/pose"/>
+
+    </node>
+ 
+
+
+</launch>
